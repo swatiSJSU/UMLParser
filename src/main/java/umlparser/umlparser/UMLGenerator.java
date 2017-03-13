@@ -139,7 +139,6 @@ public class UMLGenerator {
 										primitiveType += refType;
 									} else {
 										boolean foundPrimitive = false;
-										boolean foundCollection = false;
 
 										for (String primitiveRef : javaModel.getPrimitives()) {
 											if (refType.contains(primitiveRef)) {
@@ -153,7 +152,6 @@ public class UMLGenerator {
 											Util util = new Util(javaModel);
 											if (util.calculateMultiplicity(refType, javaModel.getClassName())) {
 												enterVariable = false;
-												foundCollection = true;
 												break;
 											}
 
@@ -398,23 +396,23 @@ public class UMLGenerator {
 	public String createRelationship() {
 		StringBuilder grammar = javaModel.getGrammar();
 
-		if (!javaModel.getUsesMap().isEmpty() && javaModel.getUsesMap().size() > 0) {
-			for (String keys : javaModel.getUsesMap().keySet()) {
+		if (!JavaModel.getUsesMap().isEmpty() && JavaModel.getUsesMap().size() > 0) {
+			for (String keys : JavaModel.getUsesMap().keySet()) {
 				String tempKey = keys;
 				grammar.append("[");
-				grammar.append(javaModel.getUsesMap().get(tempKey));
+				grammar.append(JavaModel.getUsesMap().get(tempKey));
 				grammar.append("]uses -.->[<<interface>>;");
 				grammar.append(tempKey);
 				grammar.append("],");
 			}
 		}
-		if (!javaModel.getUsesMap1().isEmpty() && javaModel.getUsesMap1().size() > 0) {
-			for (String keys : javaModel.getUsesMap1().keySet()) {
+		if (!JavaModel.getUsesMap1().isEmpty() && JavaModel.getUsesMap1().size() > 0) {
+			for (String keys : JavaModel.getUsesMap1().keySet()) {
 				String tempKey = keys;
 				grammar.append("[");
 				grammar.append(tempKey);
 				grammar.append("]uses -.->[<<interface>>;");
-				grammar.append(javaModel.getUsesMap1().get(tempKey));
+				grammar.append(JavaModel.getUsesMap1().get(tempKey));
 				grammar.append("],");
 			}
 		}
