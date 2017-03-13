@@ -80,24 +80,24 @@ public class Util {
 				for (int i = 0; i < list.size(); i++) {
 					Type temp = list.get(i).getType();
 					if (temp instanceof ReferenceType && interfaceList.contains(temp.toString())) {
-						if (!javaModel.getUsesMap().containsKey(temp)) {
-							javaModel.getUsesMap().put(temp.toString(), className);
+						if (!JavaModel.getUsesMap().containsKey(temp)) {
+							JavaModel.getUsesMap().put(temp.toString(), className);
 						}
 					}
 				}
 			}
-			return javaModel.getUsesMap();
+			return JavaModel.getUsesMap();
 		} else if (methodOrConstructor.equalsIgnoreCase("constructor")) {
 			List<Parameter> list = constructorDeclaration.getParameters();
 			if (!list.isEmpty()) {
 				for (int i = 0; i < list.size(); i++) {
 					Type temp = list.get(i).getType();
 					if (temp instanceof ReferenceType && interfaceList.contains(temp.toString())) {
-						javaModel.getUsesMap1().put(className, temp.toString());
+						JavaModel.getUsesMap1().put(className, temp.toString());
 					}
 				}
 			}
-			return javaModel.getUsesMap1();
+			return JavaModel.getUsesMap1();
 		}
 		return null;
 	}
