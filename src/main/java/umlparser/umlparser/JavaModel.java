@@ -12,7 +12,10 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 /**
- * @author Swati Gupta San Jose State University Spring 2017 CMPE 202
+ * @author Swati Gupta 
+ * San Jose State University 
+ * Spring 2017 
+ * CMPE 202
  *
  */
 public class JavaModel {

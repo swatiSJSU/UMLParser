@@ -14,7 +14,10 @@ import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.ast.type.Type;
 
 /**
- * @author Swati Gupta San Jose State University Spring 2017 CMPE 202
+ * @author Swati Gupta 
+ * San Jose State University 
+ * Spring 2017 
+ * CMPE 202
  *
  */
 public class Util {
