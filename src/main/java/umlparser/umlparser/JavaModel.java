@@ -36,7 +36,7 @@ public class JavaModel {
 	private StringBuilder grammar = new StringBuilder();
 	private String className;
 	private String usesRelation = "";
-	private String[] primitives = { "byte", "short", "int", "long", "float", "double", "boolean", "char", "Byte",
+	private String[] primitiveDataStructures = { "byte", "short", "int", "long", "float", "double", "boolean", "char", "Byte",
 			"Short", "Integer", "Long", "Float", "Double", "Boolean", "Char" };
 	private Boolean flag = true;
 
@@ -209,7 +209,7 @@ public class JavaModel {
 	 * @return the primitives
 	 */
 	public String[] getPrimitives() {
-		return primitives;
+		return primitiveDataStructures;
 	}
 
 	/**

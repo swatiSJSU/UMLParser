@@ -33,10 +33,7 @@ import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.ast.type.VoidType;
 
 /**
- * @author Swati Gupta 
- * San Jose State University 
- * Spring 2017 
- * CMPE 202
+ * @author Swati Gupta San Jose State University Spring 2017 CMPE 202
  */
 public class UMLGenerator {
 
@@ -117,16 +114,12 @@ public class UMLGenerator {
 						int fieldDecModifiers = fieldDec.getModifiers();
 						boolean success = false;
 
-						switch (fieldDecModifiers) {
-						case ModifierSet.PRIVATE:
+						if (fieldDecModifiers == ModifierSet.PRIVATE) {
 							accessModifier = "-";
 							success = true;
-							break;
-						case ModifierSet.PUBLIC:
+						} else if (fieldDecModifiers == ModifierSet.PUBLIC) {
 							accessModifier = "+";
 							success = true;
-							break;
-
 						}
 
 						// end checking access modifiers
@@ -184,15 +177,12 @@ public class UMLGenerator {
 							int methodModifier = method.getModifiers();
 							boolean success = false;
 
-							switch (methodModifier) {
-							case ModifierSet.PUBLIC:
+							if (methodModifier == ModifierSet.PUBLIC) {
 								methodAccessModifier = "+";
 								success = true;
-								break;
-							case ModifierSet.PUBLIC + ModifierSet.STATIC:
+							} else if (methodModifier == ModifierSet.PUBLIC + ModifierSet.STATIC) {
 								methodAccessModifier = "+";
 								success = true;
-								break;
 							}
 
 							if (success) {
@@ -263,12 +253,11 @@ public class UMLGenerator {
 						int constructModifier = construct.getModifiers();
 						boolean success = false;
 
-						switch (constructModifier) {
-						case ModifierSet.PUBLIC:
+						if (constructModifier == ModifierSet.PUBLIC) {
 							constructAccessModifier = "+";
 							success = true;
-							break;
 						}
+
 						constrctName = construct.getName();
 						List<Parameter> constructParams = construct.getParameters();
 						javaModel.setConstructParamList(new ArrayList<String>());
