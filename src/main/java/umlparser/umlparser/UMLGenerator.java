@@ -49,15 +49,14 @@ public class UMLGenerator {
 	// Method to generate the UML diagram
 	// from all .java files in a folder
 	public void generate(String inputFilesPath, String outputFileName) throws IOException, ParseException {
-		String grammar = "";
 		createCompilationUnit(inputFilesPath);
 		for (CompilationUnit cu : javaModel.getCompilationUnitArrayList()) {
-			grammar = createGrammar(cu);
+			createGrammar(cu);
 		}
 
-		grammar = createRelationship();
+		createRelationship();
 		String fullyQualifiedOutputFileName = inputFilesPath + "\\" + outputFileName + ".png";
-		createUMLDiagram(grammar, fullyQualifiedOutputFileName);
+		createUMLDiagram(javaModel.getGrammar().toString(), fullyQualifiedOutputFileName);
 		System.out.println("UML Diagram created at the location: " + fullyQualifiedOutputFileName);
 	}
 
@@ -86,7 +85,7 @@ public class UMLGenerator {
 	}
 
 	// Method to create the grammar
-	private String createGrammar(CompilationUnit cu) {
+	private void createGrammar(CompilationUnit cu) {
 		StringBuilder grammar = javaModel.getGrammar();
 		if (grammar.length() > 0 && (grammar.charAt(grammar.length() - 1) != ',')) {
 			grammar.append(",");
@@ -342,8 +341,6 @@ public class UMLGenerator {
 		}
 		grammar.append("]");
 		grammar.append(",");
-
-		return grammar.toString();
 	}
 
 	// Method to create the class/interface map
@@ -385,7 +382,7 @@ public class UMLGenerator {
 	// Method to create the relationship from the maps
 	// populated via createGrammar() method
 	// This method also calculates the multiplicity in a relation
-	public String createRelationship() {
+	public void createRelationship() {
 		StringBuilder grammar = javaModel.getGrammar();
 
 		if (!JavaModel.getUsesMap().isEmpty() && JavaModel.getUsesMap().size() > 0) {
@@ -457,7 +454,6 @@ public class UMLGenerator {
 		grammar.append(javaModel.getUsesRelation());
 		grammar.append("");
 		grammar.deleteCharAt(grammar.length() - 1);
-		return grammar.toString();
 	}
 
 	// Method to create the UML diagram and
