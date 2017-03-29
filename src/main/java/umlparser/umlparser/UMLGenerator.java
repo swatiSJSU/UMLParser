@@ -53,10 +53,9 @@ public class UMLGenerator {
 		for (CompilationUnit cu : javaModel.getCompilationUnitArrayList()) {
 			createGrammar(cu);
 		}
-
 		createRelationship();
 		String fullyQualifiedOutputFileName = inputFilesPath + "\\" + outputFileName + ".png";
-		createUMLDiagram(javaModel.getGrammar().toString(), fullyQualifiedOutputFileName);
+		createUMLDiagram(fullyQualifiedOutputFileName);
 		System.out.println("UML Diagram created at the location: " + fullyQualifiedOutputFileName);
 	}
 
@@ -458,7 +457,8 @@ public class UMLGenerator {
 
 	// Method to create the UML diagram and
 	// create a .png file of the diagram at the test cases location
-	public void createUMLDiagram(String grammar, String fullyQualifiedOutputFileName) {
+	public void createUMLDiagram(String fullyQualifiedOutputFileName) {
+		String grammar = javaModel.getGrammar().toString();
 		String yumlURLString = "https://yuml.me/diagram/scruffy/class/" + grammar + ".png";
 		int count = 0;
 		byte[] bufferArray = new byte[1024];
