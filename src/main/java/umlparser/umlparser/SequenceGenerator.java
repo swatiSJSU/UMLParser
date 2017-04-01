@@ -11,6 +11,14 @@ package umlparser.umlparser;
  */
 public class SequenceGenerator {
 	
+	
+	/**
+	 * 
+	 */
+	public SequenceGenerator() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void generate(String inputFilesPath, String outputFileName) {
 		
 	}
