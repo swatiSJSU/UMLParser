@@ -19,7 +19,7 @@ public class SequenceGenerator {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void generate(String inputFilesPath, String outputFileName) {
+	public void generate(String inputFilesPath, String outputFileName, String className, String functionName) {
 		
 	}
 
