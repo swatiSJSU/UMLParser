@@ -42,14 +42,12 @@ public class SequenceGenerator {
 	}
 
 	public void generate(String inputFilesPath, String outputFileName, String className, String functionName)
-			throws IOException, ParseException {
-		createCompilationUnit(inputFilesPath);
-		StringBuilder seqGrammar = seqModel.getSeqGrammar();
-		seqGrammar.append("@startuml\n");
-		for (CompilationUnit cu : seqModel.getCompilationUnitArrayList()) {
-			createSeqGrammar(cu);
-		}
-	}
+			throws IOException, ParseException {		createCompilationUnit(inputFilesPath);
+			StringBuilder seqGrammar = seqModel.getSeqGrammar();
+			seqGrammar.append("@startuml\n");
+			for (CompilationUnit cu : seqModel.getCompilationUnitArrayList()) {
+				createRelationship(cu);
+			}}
 
 	// Method to create a compilation unit
 	// from all the java files in a folder
@@ -75,7 +73,7 @@ public class SequenceGenerator {
 		seqModel.setCompilationUnitArrayList(compilationUnitArrayList);
 	}
 
-	private void createSeqGrammar(CompilationUnit compilationUnit) {
+	private void createRelationship(CompilationUnit compilationUnit) {
 		String classID = "";
 		List<TypeDeclaration> typeDeclareList = compilationUnit.getTypes();
 		for (Node node : typeDeclareList) {
@@ -102,6 +100,12 @@ public class SequenceGenerator {
 			}
 		}
 	}
+	
+	private void createGrammar(String functionName) {
+		// TO DO
+		// Construct grammar on the basis of calleeClasses,
+		// calleeFunctions and callerClasses
+	}	
 	
 	private void createSequenceDiagram(String fullyQualifiedOutputFileName) {
 		try {
