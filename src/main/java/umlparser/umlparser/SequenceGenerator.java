@@ -5,7 +5,10 @@ package umlparser.umlparser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,8 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
+
+import net.sourceforge.plantuml.SourceStringReader;
 
 /**
  * @author Swati Gupta San Jose State University Spring 2017 CMPE 202
@@ -97,5 +102,17 @@ public class SequenceGenerator {
 			}
 		}
 	}
+	
+	private void createSequenceDiagram(String fullyQualifiedOutputFileName) {
+		try {
+			OutputStream outputStream = new FileOutputStream(fullyQualifiedOutputFileName);
+			SourceStringReader sourceStringReader = new SourceStringReader(seqModel.getSeqGrammar().toString());
+			sourceStringReader.generateImage(outputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
 
 }
