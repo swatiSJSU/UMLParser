@@ -42,12 +42,26 @@ public class SequenceGenerator {
 	}
 
 	public void generate(String inputFilesPath, String outputFileName, String className, String functionName)
-			throws IOException, ParseException {		createCompilationUnit(inputFilesPath);
-			StringBuilder seqGrammar = seqModel.getSeqGrammar();
-			seqGrammar.append("@startuml\n");
-			for (CompilationUnit cu : seqModel.getCompilationUnitArrayList()) {
-				createRelationship(cu);
-			}}
+			throws IOException, ParseException {
+		createCompilationUnit(inputFilesPath);
+		StringBuilder seqGrammar = seqModel.getSeqGrammar();
+
+		for (CompilationUnit cu : seqModel.getCompilationUnitArrayList()) {
+			createRelationship(cu);
+		}
+
+		seqGrammar.append("@startuml" + "\n" + "actor USER #red" + "\n" + "USER -> " + className + " : " + functionName
+				+ "\n" + "activate " + seqModel.getFunctionClassMap().get(functionName) + "\n");
+
+		createGrammar(functionName);
+
+		seqGrammar.append("@enduml");
+
+		String fullyQualifiedOutputFileName = inputFilesPath + "\\" + outputFileName + ".png";
+		createSequenceDiagram(fullyQualifiedOutputFileName);
+
+		System.out.println("Sequence Diagram created at the location: " + fullyQualifiedOutputFileName);
+	}
 
 	// Method to create a compilation unit
 	// from all the java files in a folder
@@ -88,7 +102,8 @@ public class SequenceGenerator {
 							for (Object exprStmtObj : ((Node) blockStatementObj).getChildrenNodes()) {
 								if (exprStmtObj instanceof ExpressionStmt) {
 									if (((ExpressionStmt) (exprStmtObj)).getExpression() instanceof MethodCallExpr) {
-										methodCallExprList.add((MethodCallExpr) (((ExpressionStmt) (exprStmtObj)).getExpression()));
+										methodCallExprList.add(
+												(MethodCallExpr) (((ExpressionStmt) (exprStmtObj)).getExpression()));
 									}
 								}
 							}
@@ -100,13 +115,13 @@ public class SequenceGenerator {
 			}
 		}
 	}
-	
+
 	private void createGrammar(String functionName) {
 		// TO DO
 		// Construct grammar on the basis of calleeClasses,
 		// calleeFunctions and callerClasses
-	}	
-	
+	}
+
 	private void createSequenceDiagram(String fullyQualifiedOutputFileName) {
 		try {
 			OutputStream outputStream = new FileOutputStream(fullyQualifiedOutputFileName);
@@ -117,6 +132,6 @@ public class SequenceGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 
 }
