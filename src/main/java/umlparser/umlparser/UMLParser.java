@@ -18,15 +18,17 @@ public class UMLParser {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException, ParseException {
+
+		if ((args.length < 2) || (args.length > 2 && args.length < 4)) {
+			System.out.println("Insufficient arguments.");
+			return;
+		}
+
 		// User inputs
 		String inputFilesPath = args[0];
 		String outputFileName = args[1];
 		String className = "";
 		String functionName = "";
-		
-		if (args.length < 2) {
-			System.out.println("Insufficient arguments.");
-		}
 
 		if (args.length > 2) {
 			if (null != args[2]) {
