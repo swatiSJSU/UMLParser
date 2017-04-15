@@ -121,10 +121,18 @@ public class SequenceGenerator {
 		HashMap<String, String> functionClassMap = seqModel.getFunctionClassMap();
 		HashMap<String, ArrayList<MethodCallExpr>> functionLinkMap = seqModel.getFunctionLinkMap();
 		StringBuilder seqGrammar = seqModel.getSeqGrammar();
-		
-		// TO DO
-		// construct and append the sequence grammar
-		// with functionClassMap, functionLinkMap
+
+		for (MethodCallExpr methodCallExpr : functionLinkMap.get(functionName)) {
+			String callerClass = functionClassMap.get(functionName);
+			String calleeFunction = methodCallExpr.getName();
+			String calleeClass = functionClassMap.get(calleeFunction);
+			if (functionClassMap.containsKey(calleeFunction)) {
+				seqGrammar.append(callerClass + " -> " + calleeClass + " : " + methodCallExpr.toStringWithoutComments()
+						+ "\n" + "activate " + calleeClass + "\n");
+				createGrammar(calleeFunction);
+				seqGrammar.append(calleeClass + " -->> " + callerClass + "\n" + "deactivate " + calleeClass + "\n");
+			}
+		}
 	}
 
 	private void createSequenceDiagram(String fullyQualifiedOutputFileName) {
