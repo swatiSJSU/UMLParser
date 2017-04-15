@@ -24,14 +24,18 @@ public class UMLParser {
 		String className = "";
 		String functionName = "";
 		
+		if (args.length < 2) {
+			System.out.println("Insufficient arguments.");
+		}
+
 		if (args.length > 2) {
-			 if (null != args[2]) {
-			 className = args[2];
-			 }
-			
-			 if (null != args[3]) {
-			 functionName = args[3];
-			 }
+			if (null != args[2]) {
+				className = args[2];
+			}
+
+			if (null != args[3]) {
+				functionName = args[3];
+			}
 		}
 
 		if (inputFilesPath.length() > 0 && outputFileName.length() > 0 && className.isEmpty()
