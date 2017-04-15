@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.github.javaparser.JavaParser;
@@ -117,9 +118,13 @@ public class SequenceGenerator {
 	}
 
 	private void createGrammar(String functionName) {
+		HashMap<String, String> functionClassMap = seqModel.getFunctionClassMap();
+		HashMap<String, ArrayList<MethodCallExpr>> functionLinkMap = seqModel.getFunctionLinkMap();
+		StringBuilder seqGrammar = seqModel.getSeqGrammar();
+		
 		// TO DO
-		// Construct grammar on the basis of calleeClasses,
-		// calleeFunctions and callerClasses
+		// construct and append the sequence grammar
+		// with functionClassMap, functionLinkMap
 	}
 
 	private void createSequenceDiagram(String fullyQualifiedOutputFileName) {
