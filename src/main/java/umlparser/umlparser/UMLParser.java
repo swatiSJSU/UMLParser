@@ -23,6 +23,7 @@ public class UMLParser {
 			System.out.println("Incorrect arguments.");
 			System.out.println("Parameters:");
 			System.out.println("for Class diagram:    (1) input file path     (2) output file name");
+			System.out.println("for Sequence diagram: (1) input file path     (2) output file name     (3) class name     (4) function name");
 			return;
 		}
 
