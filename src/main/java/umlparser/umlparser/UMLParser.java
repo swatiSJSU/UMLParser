@@ -19,8 +19,8 @@ public class UMLParser {
 	 */
 	public static void main(String[] args) throws IOException, ParseException {
 
-		if ((args.length < 2) || (args.length > 2 && args.length < 4)) {
-			System.out.println("Insufficient arguments.");
+		if ((args.length < 2) || (args.length > 2 && args.length < 4) || (args.length > 4)) {
+			System.out.println("Incorrect arguments.");
 			return;
 		}
 
