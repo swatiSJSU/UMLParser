@@ -21,6 +21,8 @@ public class UMLParser {
 
 		if ((args.length < 2) || (args.length > 2 && args.length < 4) || (args.length > 4)) {
 			System.out.println("Incorrect arguments.");
+			System.out.println("Parameters:");
+			System.out.println("for Class diagram:    (1) input file path     (2) output file name");
 			return;
 		}
 
