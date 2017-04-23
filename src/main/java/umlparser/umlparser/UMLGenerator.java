@@ -54,9 +54,9 @@ public class UMLGenerator {
 			createGrammar(cu);
 		}
 		createRelationship();
-		String fullyQualifiedOutputFileName = inputFilesPath + "\\" + outputFileName + ".png";
-		createUMLDiagram(fullyQualifiedOutputFileName);
-		System.out.println("UML Diagram created at the location: " + fullyQualifiedOutputFileName);
+
+		createUMLDiagram(outputFileName);
+		System.out.println("UML Diagram created at the location: " + outputFileName);
 	}
 
 	// Method to create a compilation unit

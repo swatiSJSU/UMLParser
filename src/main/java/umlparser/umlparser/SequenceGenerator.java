@@ -58,10 +58,9 @@ public class SequenceGenerator {
 
 		seqGrammar.append("@enduml");
 
-		String fullyQualifiedOutputFileName = inputFilesPath + "\\" + outputFileName + ".png";
-		createSequenceDiagram(fullyQualifiedOutputFileName);
+		createSequenceDiagram(outputFileName);
 
-		System.out.println("Sequence Diagram created at the location: " + fullyQualifiedOutputFileName);
+		System.out.println("Sequence Diagram created at the location: " + outputFileName);
 	}
 
 	// Method to create a compilation unit

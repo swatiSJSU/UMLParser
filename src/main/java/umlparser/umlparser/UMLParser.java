@@ -42,17 +42,28 @@ public class UMLParser {
 				functionName = args[3];
 			}
 		}
+		
+		boolean isSeparatorBackSlash = inputFilesPath.contains("\\");
+		boolean isSeparatorForwardSlash = inputFilesPath.contains("/");
+		String separator = "\\";
+		if (isSeparatorBackSlash) {
+			separator = "\\";
+		} else if (isSeparatorForwardSlash) {
+			separator = "/";
+		}
+		
+		String fullyQualifiedOutputFileName = inputFilesPath + separator + outputFileName + ".png";				
 
 		if (inputFilesPath.length() > 0 && outputFileName.length() > 0 && className.isEmpty()
 				&& functionName.isEmpty()) {
 			// Invoke method to generate the UML diagram
 			UMLGenerator umlGenerator = new UMLGenerator();
-			umlGenerator.generate(inputFilesPath, outputFileName);
+			umlGenerator.generate(inputFilesPath, fullyQualifiedOutputFileName);
 		} else if (inputFilesPath.length() > 0 && outputFileName.length() > 0 && className.length() > 0
 				&& functionName.length() > 0) {
 			// Invoke method to generate the Sequence diagram
 			SequenceGenerator sequenceGenerator = new SequenceGenerator();
-			sequenceGenerator.generate(inputFilesPath, outputFileName, className, functionName);
+			sequenceGenerator.generate(inputFilesPath, fullyQualifiedOutputFileName, className, functionName);
 		} else {
 			System.out.println("Incorrect arguments. Please enter the arguments correctly.");
 		}
